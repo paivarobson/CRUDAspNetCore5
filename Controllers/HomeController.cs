@@ -8,9 +8,10 @@ namespace CRUDAspNetCore5.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.QtdeUsuarios = Usuario.Listagem.Count();
             return View();
         }
-        
+
         [HttpGet]
         public IActionResult Cadastrar(int? id)
         {
@@ -25,7 +26,7 @@ namespace CRUDAspNetCore5.Controllers
         [HttpPost]
         public IActionResult Cadastrar(Usuario usuario)
         {
-            Usuario.Salvar(usuario);            
+            Usuario.Salvar(usuario);
             return RedirectToAction("Usuarios");
         }
 
