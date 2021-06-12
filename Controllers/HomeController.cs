@@ -33,5 +33,23 @@ namespace CRUDAspNetCore5.Controllers
         {
             return View(Usuario.Listagem);
         }
+
+        [HttpGet]
+        public IActionResult Excluir(int? id)
+        {
+            if (id.HasValue && Usuario.Listagem.Any(u => u.IdUsuario == id))
+            {
+                var usuario = Usuario.Listagem.Single(u => u.IdUsuario == id);
+                return View(usuario);
+            }
+            return RedirectToAction("Usuarios");
+        }
+
+        [HttpPost]
+        public IActionResult Excluir(Usuario usuario)
+        {
+            Usuario.Excluir(usuario.IdUsuario);
+            return RedirectToAction("Usuarios");
+        }
     }
 }
