@@ -48,14 +48,16 @@ namespace CRUDAspNetCore5.Models
             }
         }
 
-        public static void Excluir(int idUsuario)
+        public static bool Excluir(int idUsuario)
         {
             var usuarioExistente = Usuario.listagem.Find(u => u.IdUsuario == idUsuario);
             if (usuarioExistente != null)
             {
-                Usuario.listagem.Remove(usuarioExistente);
+                return Usuario.listagem.Remove(usuarioExistente);
             }
+
+            return false;
         }
-        
+
     }
 }
